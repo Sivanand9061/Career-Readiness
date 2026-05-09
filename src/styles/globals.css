@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@media print {
+  @page {
+    margin: 0; /* This completely removes Chrome's default URL, Date, and Page Number headers/footers */
+  }
+
+  /* Override the dark background */
+  html, body {
+    background-color: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide absolutely everything on the page */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Make ONLY the resume canvas and its children visible */
+  #resume-canvas, #resume-canvas * {
+    visibility: visible;
+  }
+
+  /* Force the resume canvas to start at the exact top-left of the page */
+  #resume-canvas {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+}
