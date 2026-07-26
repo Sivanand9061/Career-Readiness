@@ -7,35 +7,84 @@
 
 @media print {
   @page {
-    margin: 0; /* This completely removes Chrome's default URL, Date, and Page Number headers/footers */
+    size: A4;
+    margin: 15mm 15mm 15mm 15mm;
   }
 
   /* Override the dark background */
   html, body {
     background-color: white !important;
+    background-image: none !important;
     color: black !important;
     margin: 0 !important;
     padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* Hide absolutely everything on the page */
-  body * {
-    visibility: hidden;
+  /* Reset all layout containers of next.js so they don't block height or add dark background or padding */
+  main,
+  .container,
+  div {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
   }
 
-  /* Make ONLY the resume canvas and its children visible */
-  #resume-canvas, #resume-canvas * {
-    visibility: visible;
-  }
-
-  /* Force the resume canvas to start at the exact top-left of the page */
-  #resume-canvas {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
+  /* Reset padding/margin and force natural block flow on all parent wrappers of the resume canvas */
+  main,
+  div:has(#resume-canvas) {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
     width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
+    position: static !important;
+  }
+
+  /* Hide background elements, navigation, and printing buttons */
+  .pointer-events-none,
+  .print\:hidden,
+  .print\:hidden * {
+    display: none !important;
+  }
+
+  /* Ensure resume-canvas has natural document flow for multi-page breaking */
+  #resume-canvas {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Prevent page breaks inside section blocks */
+  #resume-canvas div.mb-2,
+  #resume-canvas div.mb-6,
+  #resume-canvas .space-y-5 > div,
+  #resume-canvas .space-y-3 > div {
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+  }
+
+  #resume-canvas li {
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+  }
+
+  /* Avoid breaking headings and section titles */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    break-after: avoid-page !important;
   }
 }

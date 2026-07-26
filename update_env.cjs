@@ -8,6 +8,12 @@ envContent += `\nNEXT_PUBLIC_VAPID_KEY="BHly0nRyfWLoCp3-pNxb3rFQ1s3p8dm8hfVI-Lfy
 envContent += `FIREBASE_PROJECT_ID="tasknotif-2b734"\n`;
 envContent += `FIREBASE_CLIENT_EMAIL="firebase-adminsdk-fbsvc@tasknotif-2b734.iam.gserviceaccount.com"\n`;
 envContent += `FIREBASE_PRIVATE_KEY="${privateKey}"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_API_KEY="AIzaSyCM36IIwe-fcXnKw_RMOJeXl0Zthfol4a4"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="tasknotif-2b734.firebaseapp.com"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_PROJECT_ID="tasknotif-2b734"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="tasknotif-2b734.firebasestorage.app"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="145610089305"\n`;
+envContent += `NEXT_PUBLIC_FIREBASE_APP_ID="1:145610089305:web:4921c555e52226f532a248"\n`;
 
 fs.writeFileSync('.env', envContent);
 console.log('Updated .env');
